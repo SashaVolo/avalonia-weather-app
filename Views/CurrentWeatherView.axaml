@@ -1,0 +1,77 @@
+﻿<UserControl
+    x:Class="avalonia_dz_templates.Views.CurrentWeatherView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:avalonia_dz_templates.ViewModels"
+    d:Height="300"
+    d:Width="390"
+    x:DataType="vm:CityViewModel"
+    mc:Ignorable="d">
+    <Border
+		Classes="CurrentWeatherBorder">
+
+        <StackPanel Classes="CurrentWeatherContainer">
+            <StackPanel
+                Classes="CWHeader"
+                Orientation="Horizontal">
+                <Image
+                    Classes="CWHeaderIcon"
+                    Source="avares://avalonia-dz-templates/Assets/navigation.png"
+                    
+                    />
+                <TextBlock
+                    Classes="CWHeaderText"
+                    Text="Поточна позиція" />
+            </StackPanel>
+
+            <Border
+                Classes="CWLine"
+                />
+            
+            <StackPanel Classes="CWContent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock
+                    Classes="CWSelectedCity"
+                    HorizontalAlignment="Center"
+                    Text="{Binding Name}" />
+    
+                <StackPanel
+                    Classes="CWWeatherBlock"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    >
+    
+                    <Image
+                        Classes="CWWeatherIcon"
+                        Source="{Binding WeatherImage}"
+                        />
+    
+                    <TextBlock
+                        Classes="CWWeatherTemp"
+                        Text="{Binding Temperature, StringFormat='{}{0}°'}" />
+                </StackPanel>
+    
+                <TextBlock
+                    Classes="CWDescription"
+                    HorizontalAlignment="Center"
+                    Text="{Binding Description}" />
+    
+                <TextBlock
+                    Classes="CWMinMaxTemp"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,10"
+                    >
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Макс.:{0}°, мін.:{1}°">
+                            <Binding Path="MaxTemp" />
+                            <Binding Path="MinTemp" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            
+            </StackPanel>
+
+        </StackPanel>
+    </Border>
+</UserControl>
